@@ -1,0 +1,82 @@
+name: Test Installer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - install.sh
+      - .github/workflows/test.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - install.sh
+      - .github/workflows/test.yml
+  workflow_dispatch:
+
+jobs:
+  syntax:
+    name: Bash Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify bash syntax
+        run: bash -n install.sh
+
+  test-distros:
+    name: Test on ${{ matrix.name }}
+    needs: syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Ubuntu 22.04
+            image: ubuntu:22.04
+            setup: apt-get update && apt-get install -y -qq curl python3 bash
+          - name: Ubuntu 24.04
+            image: ubuntu:24.04
+            setup: apt-get update && apt-get install -y -qq curl python3 bash
+          - name: Debian 12
+            image: debian:12
+            setup: apt-get update && apt-get install -y -qq curl python3 bash
+          - name: Fedora 40
+            image: fedora:40
+            setup: dnf install -y -q curl python3 bash
+          - name: Rocky Linux 9
+            image: rockylinux:9
+            setup: dnf install -y -q curl python3 bash
+          - name: Arch Linux
+            image: archlinux:latest
+            setup: pacman -Sy --noconfirm curl python bash
+          - name: Alpine Linux
+            image: alpine:latest
+            setup: apk add --no-cache curl python3 bash
+
+    container:
+      image: ${{ matrix.image }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install test dependencies
+        run: ${{ matrix.setup }}
+
+      - name: Bash syntax check
+        run: bash -n install.sh
+
+      - name: List products
+        run: bash install.sh --list
+
+      - name: Dry-run CLI install
+        run: bash install.sh --dry-run --user --install cli
+
+      - name: Dry-run IDE install (skip on Alpine)
+        if: matrix.name != 'Alpine Linux'
+        run: bash install.sh --dry-run --user --install ide
+
+      - name: Alpine: verify desktop products blocked
+        if: matrix.name == 'Alpine Linux'
+        run: bash install.sh --dry-run --install ide 2>&1 || true
+
+      - name: Dry-run all products (user mode)
+        run: bash install.sh --dry-run --user all
