@@ -1,5 +1,7 @@
 # get-antigravity
 
+[🇬🇧 Read in English](README.md)
+
 Instalador de **Google Antigravity** para Linux. Todos los productos en un solo comando.
 
 ## Instalación rápida

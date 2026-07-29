@@ -1,5 +1,7 @@
 # get-antigravity
 
+[🇪🇸 Leer en español](README.es.md)
+
 One-command installer for **[Google Antigravity](https://antigravity.google)** products on Linux.
 
 ## Quick install
