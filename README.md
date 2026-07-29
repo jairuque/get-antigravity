@@ -7,7 +7,7 @@ One-command installer for **[Google Antigravity](https://antigravity.google)** p
 ### Interactive (recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USERNAME/get-antigravity/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/jairuque/get-antigravity/main/install.sh -o install.sh
 bash install.sh
 ```
 
@@ -15,13 +15,13 @@ bash install.sh
 
 ```bash
 # Install Antigravity IDE for current user
-curl -fsSL https://raw.githubusercontent.com/USERNAME/get-antigravity/main/install.sh | bash -s -- --install ide --user
+curl -fsSL https://raw.githubusercontent.com/jairuque/get-antigravity/main/install.sh | bash -s -- --install ide --user
 
 # Install CLI system-wide
-curl -fsSL https://raw.githubusercontent.com/USERNAME/get-antigravity/main/install.sh | sudo bash -s -- --install cli
+curl -fsSL https://raw.githubusercontent.com/jairuque/get-antigravity/main/install.sh | sudo bash -s -- --install cli
 
 # Install everything
-curl -fsSL https://raw.githubusercontent.com/USERNAME/get-antigravity/main/install.sh | bash -s -- --user all
+curl -fsSL https://raw.githubusercontent.com/jairuque/get-antigravity/main/install.sh | bash -s -- --user all
 ```
 
 ### System-wide installation
@@ -32,12 +32,12 @@ sudo bash install.sh --install ide
 
 ## Supported Products
 
-| Product | Description | Binary |
-|---|---|---|
-| **Antigravity 2.0** | Desktop app | `/usr/local/bin/antigravity` |
+| Product             | Description                | Binary                           |
+| ------------------- | -------------------------- | -------------------------------- |
+| **Antigravity 2.0** | Desktop app                | `/usr/local/bin/antigravity`     |
 | **Antigravity IDE** | Code editor (VS Code fork) | `/usr/local/bin/antigravity-ide` |
-| **Antigravity CLI** | Terminal agent (`agy`) | `~/.local/bin/agy` |
-| **Antigravity SDK** | Python SDK | `pipx` / `pip install` |
+| **Antigravity CLI** | Terminal agent (`agy`)     | `~/.local/bin/agy`               |
+| **Antigravity SDK** | Python SDK                 | `pipx` / `pip install`           |
 
 ## Options
 
@@ -62,26 +62,26 @@ Options:
 
 ## Supported Distributions
 
-| Distribution | Notes |
-|---|---|
-| Ubuntu 20.04+ | Full support |
-| Debian 11+ | Full support (Debian 10: glibc 2.28 minimum) |
-| Fedora 36+ | Full support |
-| RHEL 8+ / Rocky 8+ | Full support (needs EPEL for pip) |
-| Arch Linux / Manjaro | Full support (package names differ) |
-| openSUSE Leap 15.4+ | Full support |
-| openSUSE Tumbleweed | Full support |
-| Linux Mint 20+ | Full support |
-| **Alpine Linux** | **Not supported** for desktop products (musl libc). CLI and SDK work. |
+| Distribution         | Notes                                                                 |
+| -------------------- | --------------------------------------------------------------------- |
+| Ubuntu 20.04+        | Full support                                                          |
+| Debian 11+           | Full support (Debian 10: glibc 2.28 minimum)                          |
+| Fedora 36+           | Full support                                                          |
+| RHEL 8+ / Rocky 8+   | Full support (needs EPEL for pip)                                     |
+| Arch Linux / Manjaro | Full support (package names differ)                                   |
+| openSUSE Leap 15.4+  | Full support                                                          |
+| openSUSE Tumbleweed  | Full support                                                          |
+| Linux Mint 20+       | Full support                                                          |
+| **Alpine Linux**     | **Not supported** for desktop products (musl libc). CLI and SDK work. |
 
 All supported distros require **glibc >= 2.28** for desktop products.
 
 ## Installation paths
 
-| Mode | Binaries | Desktop/Icons | Application Data |
-|---|---|---|---|
-| System (`sudo`) | `/usr/local/bin/` | `/usr/share/` | `/opt/` |
-| User (`--user`) | `~/.local/bin/` | `~/.local/share/` | `~/.local/opt/` |
+| Mode            | Binaries          | Desktop/Icons     | Application Data |
+| --------------- | ----------------- | ----------------- | ---------------- |
+| System (`sudo`) | `/usr/local/bin/` | `/usr/share/`     | `/opt/`          |
+| User (`--user`) | `~/.local/bin/`   | `~/.local/share/` | `~/.local/opt/`  |
 
 ## Integrity verification
 
